@@ -1,0 +1,36 @@
+<div style="text-align:center">
+    <h4>
+      Basic Pagination, Filtering and Sorting
+    </h4>
+  
+    <table class="table">
+      <thead>
+      <tr class="search-task "> 
+          <td colspan="5">
+              <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" 
+              placeholder=" Start searching  ">
+          </td>
+      </tr>  
+        <tr>
+          <th scope="col" (click)="sort('id')">ID</th>
+          <th scope="col" (click)="sort('name')">NAME</th>
+          <th scope="col" (click)="sort('created')">CREATED</th>
+          <th scope="col" (click)="sort('modified')">MODIFIED</th>
+          <th scope="col" (click)="sort('country_check_severity')">COUNTRY CHECK SEVERITY </th>
+        </tr>
+      </thead>
+      <tbody>
+       
+         <tr *ngFor="let item of CompanyData | paginate: pageConfig | filter: searchText">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.created}}</td>
+          <td>{{item.modified}}</td>
+          <td>{{item.country_check_severity}}</td>
+        </tr>  
+      </tbody>
+    </table>
+  
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  
+  </div>
